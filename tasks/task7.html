@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 7</h1>
+    <p>
+      Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей
+      за:
+    </p>
+    <ol>
+      <li>за весь рік; (1-12)</li>
+      <li>у першій половині року;(1-6)</li>
+      <li>у другій половині року;(7-12)</li>
+      <li>за літо;(6-9)</li>
+      <li>за 2 квартал;(4-6)</li>
+      <li>за парні місяці (з парними номерами);(2,4,6,8,10,12)</li>
+      <li>
+        за місяці, які є початковими у сезоні (весна,літо, осінь,
+        зима).(3,6,9,12)
+      </li>
+    </ol>
+    <script>
+      // 1.Опис функції
+      //функція для створення масиву із сумами платіжок за N(12) місяців
+      function inputArray(numberMonths) {
+        let arr = []
+        for (let i = 0; i < numberMonths; i++) {
+          const monthPayment = parseFloat(
+            prompt(`Введіть сумму платіжки за ${i + 1} місяць`)
+          )
+          arr.push(monthPayment)
+        }
+        return arr
+      }
+
+      //функція обчилює загальну сумму платіжок від початкового
+      //місяця startMonthNumber до кінцевого endMonthNumber місяця
+      function getPaymentSum(listPayments, startMonthNumber, endMonthNumber) {
+        let sum = 0
+        for (
+          let month = startMonthNumber - 1;
+          month < endMonthNumber;
+          month++
+        ) {
+          sum += listPayments[month]
+        }
+        return sum
+      }
+
+      //функція обчилює сумму платіжок парних місяців
+      function getPairedSum(listPayments, startMonthNumber, endMonthNumber) {
+        let sum = 0
+        for (
+          let month = startMonthNumber - 1;
+          month < endMonthNumber;
+          month++
+        ) {
+          if ((month + 1) % 2 === 0) sum += listPayments[month]
+        }
+        return sum
+      }
+
+      //функція обчилює сумму платіжок за місяці, які є початковими у сезоні
+      function getStartSeasonMonth(
+        listPayments,
+        startMonthNumber,
+        endMonthNumber
+      ) {
+        let sum = 0
+        for (
+          let month = startMonthNumber - 1;
+          month < endMonthNumber;
+          month++
+        ) {
+          if ((month + 1) % 3 === 0) sum += listPayments[month]
+        }
+        return sum
+      }
+
+      //Вводимо елементи масиву
+      const listPayments = inputArray(12)
+
+      //Знаходимо результат
+      //1) за весь рік; (1-12)
+      const sumYear = getPaymentSum(listPayments, 1, 12)
+      document.write(
+        `Сумарна кількість грошей на оплату комунальних послуг складає ${sumYear} грн<br>`
+      )
+      //2)у першій половині року;(1-6)
+      const sumFirstHalfOfTheYear = getPaymentSum(listPayments, 1, 6)
+      document.write(
+        `Сумарна кількість грошей на оплату комунальних послуг у першій половині року складає ${sumFirstHalfOfTheYear} грн<br>`
+      )
+      //3)у другій половині року;(7-12)
+      const sumSecondHalfOfTheYear = getPaymentSum(listPayments, 7, 12)
+      document.write(
+        `Сумарна кількість грошей на оплату комунальних послуг у другій половині року складає ${sumSecondHalfOfTheYear} грн<br>`
+      )
+      //4)за літо;(6-9)
+      const sumSummerPaymentAmount = getPaymentSum(listPayments, 6, 8)
+      document.write(
+        `Сумарна кількість грошей на оплату комунальних послуг за літо складає ${sumSummerPaymentAmount} грн<br>`
+      )
+      //5)за ІІ квартал;(4-6)
+      const sumPaymentForTheSecondQuarter = getPaymentSum(listPayments, 4, 6)
+      document.write(
+        `Сумарна кількість грошей на оплату комунальних послуг за 2 квартал складає ${sumPaymentForTheSecondQuarter} грн<br>`
+      )
+      //6)за парні місяці (з парними номерами);(2,4,6,8,10,12)
+      const sumPairedMonth = getPairedSum(listPayments, 1, 12)
+      document.write(
+        `Сумарна кількість грошей на оплату комунальних послуг за парні місяці складає ${sumPairedMonth} грн<br>`
+      )
+      //7)за місяці, які є початковими у сезоні (весна,літо, осінь,зима).(3,6,9,12)
+      const sumStartSeasonMonth = getStartSeasonMonth(listPayments, 1, 12)
+      document.write(
+        `Сумарна кількість грошей на оплату комунальних послуг за місяці, які є початковими у сезоні складає ${sumStartSeasonMonth} грн<br>`
+      )
+    </script>
+  </body>
+</html>

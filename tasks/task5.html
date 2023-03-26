@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 5</h1>
+    <p>Дано послідовність оцінок учня. Підрахувати кількість:</p>
+    <ol>
+      <li>двійок</li>
+      <li>кількість хороших оцінок (добре, відмінно);</li>
+      <li>кількість оцінок, які нижче середнього.</li>
+    </ol>
+
+    <script>
+      // 1.Опис функції
+      //функція для створення масиву зі послідовністю оцінок учня.
+      function inputArray(numberItems) {
+        let arr = []
+        for (let i = 0; i < numberItems; i++) {
+          const scoreStudent = parseInt(
+            prompt(`Введіть оцінку з ${i + 1} предмету`)
+          )
+          arr.push(scoreStudent)
+        }
+        return arr
+      }
+
+      //1)Фунція підраховує кількість двійок
+      function getСountsNumberTwos(listStudentScore, scoreMin) {
+        let numberDeuces = 0
+        for (let i = 0; i < listStudentScore.length; i++) {
+          if (listStudentScore[i] === scoreMin) numberDeuces++
+        }
+        return numberDeuces
+      }
+
+      //2)Фунція підраховує кількість хороших оцінок (добре, відмінно);
+      function getСountsNumberGoodScore(listStudentScore, scoreMin, scoreMax) {
+        let numberGoodScore = 0
+        for (let i = 0; i < listStudentScore.length; i++) {
+          if (
+            listStudentScore[i] === scoreMin ||
+            listStudentScore[i] === scoreMax
+          )
+            numberGoodScore++
+        }
+        return numberGoodScore
+      }
+      //3)Фунція підраховує кількість оцінок, які нижче середнього.
+      function getNumberScoreBelowAverage(listStudentScore, averageScore) {
+        let numberScoreBelowAverage = 0
+        for (let i = 0; i < listStudentScore.length; i++) {
+          if (listStudentScore[i] <= averageScore) numberScoreBelowAverage++
+        }
+        return numberScoreBelowAverage
+      }
+
+      //Вводимо елементи масиву
+      const numberItems = parseInt(prompt(`Введіть кількість предметів`))
+      const listStudentScore = inputArray(numberItems)
+      //Знаходимо результат
+      //1) Підрахувати кількість двійок
+      const numberDeuces = getСountsNumberTwos(listStudentScore, 2)
+      document.write(`Кількість двійок в табелі учня: ${numberDeuces}<br>`)
+      //2) Підрахувати кількість хороших оцінок (добре, відмінно);
+      const numberGoodScore = getСountsNumberGoodScore(listStudentScore, 4, 5)
+      document.write(
+        `Кількість хороших оцінок (добре, відмінно): ${numberGoodScore}<br>`
+      )
+      //3) Підрахувати кількість оцінок, які нижче середнього
+      const numberScoreBelowAverage = getNumberScoreBelowAverage(
+        listStudentScore,
+        3
+      )
+      document.write(
+        `Кількість оцінок, які нижче середнього: ${numberScoreBelowAverage}`
+      )
+    </script>
+  </body>
+</html>

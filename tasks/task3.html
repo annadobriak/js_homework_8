@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 3</h1>
+    <p>
+      Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+    </p>
+    <script>
+      // 1.Опис функції
+      //функція для створення масиву з іменами певної кількості учнів(numberStudents)
+      function inputArrayNameStudents(numberStudents) {
+        let arr = []
+        for (let i = 0; i < numberStudents; i++) {
+          const nameStudents = prompt(`Введіть ім"я ${i + 1} учня`)
+          arr.push(nameStudents)
+        }
+        return arr
+      }
+      //функція з’ясовує скільки разів зустрічається ім’я «Іван»
+      function getNumberRepeatedStudentName(nameStudents, someNameStudent) {
+        let numberRepeatedStudentName = 0
+        for (let i = 0; i < nameStudents.length; i++) {
+          if (someNameStudent === nameStudents[i]) numberRepeatedStudentName++
+        }
+        return numberRepeatedStudentName
+      }
+
+      //Вводимо кількість учнів у класі
+      const numberStudents = parseInt(
+        prompt("Введіть кількість учнів в класі", "0")
+      )
+      //Формуємо масив имен учнів
+      const nameStudents = inputArrayNameStudents(numberStudents)
+      document.write(`імена учнів ${nameStudents}<br>`)
+      //Знаходимо результат
+      const numberRepeatedSomeStudentName = getNumberRepeatedStudentName(
+        nameStudents,
+        "Іван"
+      )
+      document.write(
+        `Кількість учнів з іменем "Іван" ${numberRepeatedSomeStudentName}<br>`
+      )
+    </script>
+  </body>
+</html>

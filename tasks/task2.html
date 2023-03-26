@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 2</h1>
+    <p>
+      Дано масив, який зберігає кількість відвідувачів магазину протягом
+      тижня.(1-7) Вивести на екран:
+    </p>
+    <ol>
+      <li>
+        номери днів, протягом яких кількість відвідувачів була меншою за 20;
+      </li>
+      <li>номери днів, коли кількість відвідувачів була максимальною;</li>
+      <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
+      <li>
+        загальну кількість клієнтів у робочі дні та окремо загальну кількість
+        клієнтів на вихідних.
+      </li>
+    </ol>
+
+    <script>
+      // 1.Опис функції
+      // функція підраховує номери днів, протягом яких кількість
+      //відвідувачів була меншою за 20;
+      function getNumbersDayLessThanTwenty(
+        numberCustomers,
+        startDayNumber,
+        endDayNumber
+      ) {
+        let arr = []
+        for (let day = startDayNumber - 1; day < endDayNumber; day++) {
+          if (numberCustomers[day] < 20) {
+            arr.push(day + 1)
+          }
+        }
+        return arr
+      }
+
+      // функція підраховує номери днів, коли кількість відвідувачів
+      //була певною someNumberCustomers (мінімальною, максимальною);
+      function getNumberDaySomeNumberCustomers(
+        numberCustomers,
+        startDayNumber,
+        endDayNumber,
+        someNumberCustomers
+      ) {
+        let arr = []
+        for (let day = startDayNumber - 1; day < endDayNumber; day++) {
+          if (someNumberCustomers === numberCustomers[day]) arr.push(day + 1)
+        }
+        return arr
+      }
+
+      //функція підраховує загальну кількість клієнтів від початкового
+      //дня startDayNumber до кінцевого дня endDayNumber
+      function getTotalNumberCustomers(
+        numberCustomers,
+        startDayNumber,
+        endDayNumber
+      ) {
+        let sum = 0
+        for (let day = startDayNumber - 1; day < endDayNumber; day++) {
+          sum += numberCustomers[day]
+        }
+        return sum
+      }
+
+      // Дано масив з кількістю відвідувачів протягом тижня
+      const numberCustomers = [101, 14, 19, 19, 19, 54, 64]
+
+      //2.Знаходимо результат
+      //1) номери днів, протягом яких кількість відвідувачів була меншою за 20;
+      const numbersDayLessThanTwenty = getNumbersDayLessThanTwenty(
+        numberCustomers,
+        1,
+        7
+      )
+      document.write(
+        `Номери днів, протягом яких кількість відвідувачів була меншою за 20:  ${numbersDayLessThanTwenty}<br>`
+      )
+      //2) номери днів, коли кількість відвідувачів була максимальною;
+      let numberCustomersMax = Math.max(...numberCustomers)
+      const numberDayCustomersMax = getNumberDaySomeNumberCustomers(
+        numberCustomers,
+        1,
+        7,
+        numberCustomersMax
+      )
+      document.write(
+        `Номери днів, коли кількість відвідувачів була максимальною: ${numberDayCustomersMax}<br>`
+      )
+      //3) номери днів, коли кількість відвідувачів була мінімальною;
+      let numberCustomersMin = Math.min(...numberCustomers)
+      const numberDayCustomersMin = getNumberDaySomeNumberCustomers(
+        numberCustomers,
+        1,
+        7,
+        numberCustomersMin
+      )
+      document.write(
+        `Номери днів, коли кількість відвідувачів була мінімальною: ${numberDayCustomersMin}<br>`
+      )
+      //4)загальну кількість клієнтів у робочі дні (1-5)
+      const totalNumberCustomersWorkDay = getTotalNumberCustomers(
+        numberCustomers,
+        1,
+        5
+      )
+      document.write(
+        `Загальна кількість клієнтів у робочі дні ${totalNumberCustomersWorkDay}<br>`
+      )
+      //5)загальну кількість клієнтів на вихідних. (6-7)
+      const totalNumberCustomersDayOff = getTotalNumberCustomers(
+        numberCustomers,
+        6,
+        7
+      )
+      document.write(
+        `Загальна кількість клієнтів у вихідні дні ${totalNumberCustomersDayOff}<br>`
+      )
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 8</h1>
+    <p>
+      Дано одновимірний масив, у якому зберігається певна виграшна сума
+      (елементи заповнюються випадковим чином значеннями від -500 до 500).
+      Надаючи користувачу можливість вибирати номери елементів (поки він не
+      відмовиться). Знаходити сумарний виграш.
+    </p>
+
+    <script>
+      // 1.Опис функції
+      //функція для створення масиву із рандомними значеннями
+      function getRandomArray(valuesNumber, minValue, maxValue) {
+        let arr = []
+        for (let i = 0; i < valuesNumber; i++) {
+          const randNum =
+            minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+          arr.push(randNum)
+        }
+        return arr
+      }
+
+      //функція формує масив із номерів, які вводить користувач
+      //поки користувач не відмовиться
+      function getArrayValueUser() {
+        const arr2 = []
+        let answerConfirm
+        do {
+          const numberUser = parseInt(
+            prompt(
+              `Введіть номер передбачуваного виграшного номера від 0 до ${
+                valuesNumber - 1
+              }`
+            )
+          )
+          arr2.push(numberUser)
+          answerConfirm = confirm("Продовжуємо грати?")
+        } while (answerConfirm === true)
+        return arr2
+      }
+
+      //функція знаходить сумарний виграш користувача.
+      function getSumValue(randomArray, arrayValueUser) {
+        let sum = 0
+        for (let i = 0; i < randomArray.length; i++) {
+          for (let j = 0; j < randomArray.length; j++)
+            if (i === arrayValueUser[j]) sum += randomArray[i]
+        }
+        return sum
+      }
+
+      //Вводимо елементи масиву
+      const valuesNumber = parseInt(
+        prompt(`Введіть кількість єлементів масиву`)
+      )
+      const randomArray = getRandomArray(valuesNumber, -500, 500)
+      //Знаходимо результат
+      // Формуємо масив виграшних номерів користувача
+      const arrayValueUser = getArrayValueUser()
+      //знаходимо сумарний виграш користувача.
+      const sumWinUser = getSumValue(randomArray, arrayValueUser)
+      document.write(`Ваш виграш складає: ${sumWinUser}`)
+    </script>
+  </body>
+</html>

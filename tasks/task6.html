@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 6</h1>
+    <p>
+      Дано послідовність цін товарів та назв (у окремих масивах). Вивести на
+      екран ті, які може собі дозволити користувач (кількість грошей задається).
+    </p>
+    <img src="../img/example_6.jpg" alt="Приклад" style="display: block" />
+
+    <script>
+      // 1.Опис функції
+      //функція виводить на єкран ціни товарів та назв,
+      //які може собі дозволити користувач
+      function getProductsPricesProductsTitles(
+        productsPrices,
+        productsTitles,
+        numberMoneyUser
+      ) {
+        for (let i = 0; i < productsPrices.length; i++) {
+          if (productsPrices[i] < numberMoneyUser) {
+            for (let j = 0; j < productsTitles.length; j++) {
+              if (i === j) {
+                document.write(
+                  `Користувач може купити: ${productsTitles[j]} ціна товару: ${productsPrices[i]}<br>`
+                )
+              }
+            }
+          }
+        }
+      }
+      // Дано послідовність цін товарів та назв (у окремих масивах).
+      let productsPrices = [1000, 200, 119, 152, 64]
+      let productsTitles = ["cheese", "juice", "bread", "cake", "water"]
+
+      //Вводимо кількість грошей користувача
+      const numberMoneyUser = parseFloat(
+        prompt("Введіть кількість грошей користувача")
+      )
+      //Знаходимо результат
+      const numberProductBuyUser = getProductsPricesProductsTitles(
+        productsPrices,
+        productsTitles,
+        numberMoneyUser
+      )
+    </script>
+  </body>
+</html>

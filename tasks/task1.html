@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 1</h1>
+    <p>
+      Дано масив, який містить оцінки з К предметів. Знайти середній бал і
+      з’ясувати до якої категорії він відноситься (відмінник, двійочник (має
+      хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча
+      би одна трійка)).
+    </p>
+
+    <script>
+      // 1.Опис функції
+      //Функція знаходить мінімальну оцінку та визначає категорію учня
+      function getStudentCategory(marksArray) {
+        const minMark = Math.min(...marksArray)
+        let category
+        switch (minMark) {
+          case 2:
+            category = "Двійочник"
+            break
+          case 3:
+            category = "Трійочник"
+            break
+          case 4:
+            category = "Хорошист"
+            break
+          case 5:
+            category = "Відмінник"
+            break
+        }
+        return category
+      }
+      //Функція знаходить середній бал учня
+      function getAverageMark(marksArray) {
+        let numbMark = 0
+        let sumMark = 0
+
+        for (let i = 0; i < marksArray.length; i++) {
+          numbMark++
+          sumMark += marksArray[i]
+        }
+        return sumMark / numbMark
+      }
+      // Дано масив з оцінками учня
+      const marksArray = [3, 4, 4, 3, 4, 4, 4]
+
+      //2.Використання функції і розв"язання задачі
+      const studentCategory = getStudentCategory(marksArray)
+      const averageMark = getAverageMark(marksArray)
+
+      // 3.Виведення результату
+      document.write(
+        `Середній бал учня ${averageMark}, він відноситься до категорії: ${studentCategory}`
+      )
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 9</h1>
+    <p>
+      Морський бій. Користувач вводить кількість клітинок одновимірного масиву
+      та кількість одиночних кораблів. Комп’ютер довільно розміщує ці одиночні
+      кораблі у масиві по один у клітинці (якщо у клітинці 0, то клітинка пуста,
+      якщо 1 – то це означає, що там є корабель. Користувач вводить номер
+      клітинки, куди стріляє. Гра продовжується до тих пір, поки не будуть
+      потоплені усі кораблі.
+    </p>
+
+    <script>
+      // 1.Опис функції
+      // Формуємо поле гри
+      //функція генерує рандомне число
+      function getRandomNum(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+      //функція шукає порожню клітинку і записує туди 1(ставить корабель)
+      function getFreeCell(gameField) {
+        let shipIndex
+        const lastIndex = gameField.length - 1
+        do {
+          shipIndex = getRandomNum(0, lastIndex)
+        } while (gameField[shipIndex] === 1)
+        return shipIndex
+      }
+      //функція створює масив з cellsNumber єлементів(клітинок), заповнює його нулями
+      // і розставляє відповідну кільість кораблів shipsNumber
+      function createGameField(cellsNumber, shipsNumber) {
+        const gameField = new Array(cellsNumber).fill(0)
+        for (let i = 0; i < shipsNumber; i++) {
+          let shipIndex = getFreeCell(gameField)
+          gameField[shipIndex] = 1
+        }
+        return gameField
+      }
+      // Гра користувача
+      function game(gameField, shipsNumber) {
+        do {
+          const userStrikePosition =
+            parseInt(prompt(`Куди стріляємо (1 - ${gameField.length})?`)) - 1
+
+          if (gameField[userStrikePosition] === 1) {
+            shipsNumber--
+            alert("Влучив!Коробель потоплено!")
+            gameField[userStrikePosition] = 0
+          } else alert("Промазав!")
+        } while (shipsNumber > 0)
+      }
+
+      //Вводимо елементи масиву
+      const cellsNumber = parseInt(
+        prompt(`Введіть кількість клітинок ігрового поля`)
+      )
+      const shipsNumber = parseInt(prompt(`Введіть кількість кораблів`))
+
+      //Знаходимо результат
+      const gameField = createGameField(cellsNumber, shipsNumber)
+      game(gameField, shipsNumber)
+    </script>
+  </body>
+</html>

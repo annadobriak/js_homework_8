@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Дано послідовність номерів автомобілів. Підрахувати кількість номерів,
+      які:
+    </p>
+    <ol>
+      <li>починаються на букву «А»;</li>
+      <li>перша і остання літери співпадають;</li>
+      <li>складаються з більше ніж 5 символів;</li>
+    </ol>
+
+    <script>
+      //функція підраховує кількість номерів, які починаються на букву «А»;
+      function getNumberNumbersBeginWithSomeletter(
+        arrayCarNumbers,
+        someLetter
+      ) {
+        let numberСarNumbers = 0
+        for (let i = 0; i < arrayCarNumbers.length; i++) {
+          if (someLetter === arrayCarNumbers[i][0]) numberСarNumbers++
+        }
+        return numberСarNumbers
+      }
+
+      //функція підраховує кількість номерів в яких перша і остання літери співпадають;
+      function getNumbersWhichFirstLastLettersMatch(arrayCarNumbers) {
+        let numberСarNumbers = 0
+        for (let i = 0; i < arrayCarNumbers.length; i++) {
+          if (
+            arrayCarNumbers[i][0] ===
+            arrayCarNumbers[i][arrayCarNumbers[i].length - 1]
+          )
+            numberСarNumbers++
+        }
+        return numberСarNumbers
+      }
+
+      //функція підраховує кількість номерів які складаються більше ніж з 5 символів;
+      function getNumbersNumberMoreThanSomeCharacters(arrayCarNumbers) {
+        let numberСarNumbers = 0
+        for (let i = 0; i < arrayCarNumbers.length; i++) {
+          if (arrayCarNumbers[i].length - 1 > 5) numberСarNumbers++
+        }
+        return numberСarNumbers
+      }
+
+      // Дано масив з послідовністю номерів автомобілів
+      const arrayCarNumbers = ["AХ2068КA", "AI2541AA", "AX1221КA"]
+
+      //Знаходимо результат
+      //1) кількість номерів, які починаються на букву «А»;
+      const numberСarNumbersBeginWithSomeletter =
+        getNumberNumbersBeginWithSomeletter(arrayCarNumbers, "A")
+      document.write(
+        `Кількість номерів, які починаються на букву «А»: ${numberСarNumbersBeginWithSomeletter}<br>`
+      )
+
+      //2) кількість номерів в яких перша і остання літери співпадають;
+      const numberNumbersWhichFirstLastLettersMatch =
+        getNumbersWhichFirstLastLettersMatch(arrayCarNumbers)
+      document.write(
+        `Кількість номерів в яких перша і остання літери співпадають: ${numberNumbersWhichFirstLastLettersMatch}<br>`
+      )
+
+      //3) кількість номерів які складаються більше ніж з 5 символів;
+      const numbersNumberMoreThanNCharacters =
+        getNumbersNumberMoreThanSomeCharacters(arrayCarNumbers)
+      document.write(
+        `Кількість номерів які складаються більше ніж з 5 символів: ${numbersNumberMoreThanNCharacters}<br>`
+      )
+    </script>
+  </body>
+</html>
